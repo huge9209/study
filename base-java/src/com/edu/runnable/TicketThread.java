@@ -9,24 +9,36 @@ package com.edu.runnable;
 public class TicketThread implements Runnable{
 
 
-    private int ticket = 500;
+    private int ticket = 10;
+    boolean flag = true;
 
     @Override
-    public synchronized void run() {
-        while (true){
-            if(ticket<=0){
-                break;
-            }
+    public  void run() {
+        while (flag){
             try {
-                Thread.sleep(100);
+                buy();
+                Thread.sleep(100);//注意sloop不会释放锁
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(Thread.currentThread().getName()+"拿到了第"+ticket+"张票！");
-            ticket--;
         }
     }
+    //synchronized 同步方法 锁的时this
+    // synchronized块  synchronized(锁的对象){}  锁的对象就是变化的量
 
+    public synchronized void buy() throws InterruptedException {
+        if(ticket<=0){
+            flag = false;
+            return;
+        }
+
+
+        System.out.println(Thread.currentThread().getName()+"拿到了第"+ticket--+"张票！");
+    }
+
+
+}
+class Main {
     public static void main(String[] args) {
         TicketThread ticketThread = new TicketThread();
 
