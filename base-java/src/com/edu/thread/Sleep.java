@@ -1,4 +1,4 @@
-package com.edu.runnable;
+package com.edu.thread;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

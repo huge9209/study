@@ -1,4 +1,4 @@
-package com.edu.runnable;
+package com.edu.thread;
 
 /**
  * @program: base-java
