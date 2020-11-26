@@ -43,5 +43,12 @@ public class CallableThread implements Callable<Boolean> {
 
         //关闭服务
         executorService.shutdown();
+
+
+        FutureTask<Boolean> futureTask = new FutureTask(new CallableThread("测试线程"));
+        new Thread(futureTask).start();
+
+        Boolean a = futureTask.get();
+        System.out.println(a);
     }
 }

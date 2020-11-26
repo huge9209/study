@@ -1,4 +1,4 @@
-package com.edu.thread;
+package com.edu.thread.lock;
 
 /**
  * @program: base-java
