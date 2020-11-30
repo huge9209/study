@@ -25,11 +25,13 @@ public class ThreadPool {
         Thread thread1 = new Thread(()->{
             System.out.println(Thread.currentThread().getName()+"--");
         });
+        service.execute(thread);
+        service.execute(thread1);
+        service.execute(thread);
+        service.execute(thread);
         service.submit(thread);
-        service.submit(thread1);
-        service.submit(thread);
-        service.submit(thread);
-        service.submit(thread);
+
+        //execute 没有返回值  submit有返回值
         service.shutdown();
     }
 }
