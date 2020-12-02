@@ -34,7 +34,7 @@ public class Demo1 {
             service.shutdown();
         }
     }
-    public void ThreadPoolExecutor1(int corePoolSize,//核心线程池大小
+    public void ThreadPoolExecutor(int corePoolSize,//核心线程池大小
                               int maximumPoolSize,//最大核心线程大小
                               long keepAliveTime,//超时了没有人调用就会释放
                               TimeUnit unit,//超时单位
