@@ -3,6 +3,7 @@ package com.edu.unsafe;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * @program: JUC
@@ -18,8 +19,8 @@ public class TestSet {
          *
          */
 
-        Set<String> set = new HashSet<>();
-
+        //Set<String> set = new HashSet<>();
+        Set<String> set = new CopyOnWriteArraySet<String>();
         for (int i = 1; i <= 30; i++) {
             new Thread(()->{
                 set.add(UUID.randomUUID().toString().substring(0,5));

@@ -36,5 +36,10 @@ public class Test3 {
         name.setAccessible(true);
         name.set(user3,"pianpian2");
         System.out.println(user3);
+
+        Method setName = aClass.getDeclaredMethod("setName", String.class);
+        setName.setAccessible(true);
+        setName.invoke(user,"panhu");
+        System.out.println(user);
     }
 }

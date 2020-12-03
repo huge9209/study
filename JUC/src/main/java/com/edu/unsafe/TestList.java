@@ -14,15 +14,12 @@ import java.util.stream.Collectors;
 public class TestList {
     public static void main(String[] args) {
         //java.util.ConcurrentModificationException 并发修改异常
-
         /**
          * 解决方案：
          * 1，List<String> strings = new Vector<>();
          * 2.List<String> strings = Collections.synchronizedList(new ArrayList<>());
          * 3.List<String> strings = new CopyOnWriteArrayList<>();
          */
-
-
          //
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -31,7 +28,5 @@ public class TestList {
                 System.out.println(list);
             },"线程-"+i).start();
         }
-
-
     }
 }
