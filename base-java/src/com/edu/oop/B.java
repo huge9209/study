@@ -19,4 +19,8 @@ public class B extends A{
     public void method1() {
         System.out.println("B执行method1");
     }
+
+    public static void method2(){
+        System.out.println("B执行method2");
+    }
 }
