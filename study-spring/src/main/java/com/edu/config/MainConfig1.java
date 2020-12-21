@@ -14,8 +14,8 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration //告诉spring这是个配置类
 @ComponentScan("com.edu")
-@Import(MainConfig1.class)
-public class MainConfig {
+
+public class MainConfig1 {
 
     //给容器注册一个Bean ;类型未返回值的类型，id默认是方法名作为id
     @Bean("person2")

@@ -16,6 +16,7 @@ public class MainTest {
 //        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
 //        Person bean = (Person) applicationContext.getBean("person");
 
+        //获取spring的上下文对象！
         ApplicationContext applicationContext1 = new AnnotationConfigApplicationContext(MainConfig.class);
         Person person = applicationContext1.getBean(Person.class);
 //        System.out.println(bean.toString());
