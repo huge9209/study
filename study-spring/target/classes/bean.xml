@@ -2,11 +2,64 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
         <!--xml组件扫描-->
         <!-- <context:component-scan base-package="com.edu"></context:component-scan>-->
         <bean id="person" class="com.edu.entity.Person">
             <property name="name" value="panhu"></property>
             <property name="age" value="15"></property>
         </bean>
+    <!--通过下标-->
+        <bean id="person1" class="com.edu.entity.Person">
+            <constructor-arg index="0" value="panhu"/>
+            <constructor-arg index="1" value="15"/>
+        </bean>
+    <!--通过类型-->
+    <bean id="person2" class="com.edu.entity.Person">
+        <constructor-arg type="java.lang.String" value="panhu"/>
+        <constructor-arg type="java.lang.String" value="15"/>
+    </bean>
+    <!--通过参数名-->
+    <bean id="person3" class="com.edu.entity.Person">
+        <constructor-arg name="name" value="panhu"/>
+        <constructor-arg name="age" value="panhu"/>
+    </bean>
+
+    <bean id="address" class="com.edu.entity.Address"></bean>
+    <bean id="student" class="com.edu.entity.Student">
+        <property name="name" value="panhu"></property>
+
+        <property name="address" ref="address"></property>
+
+        <!--list-->
+        <property name="list">
+            <list>
+                <value>list1</value>
+                <value>list2</value>
+                <value>list3</value>
+                <value>list4</value>
+            </list>
+        </property>
+        <!--Map-->
+        <property name="map">
+            <map>
+                <entry key="key1" value="v1"></entry>
+            </map>
+        </property>
+        <!--Set-->
+        <property name="set">
+            <set>
+                <value>set1</value>
+                <value>set1</value>
+                <value>set1</value>
+            </set>
+        </property>
+    </bean>
+    <bean id="qq" class="com.edu.entity.Person" p:name="panhu" p:age="18" >
+    </bean>
+
 </beans>

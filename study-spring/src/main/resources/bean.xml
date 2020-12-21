@@ -3,7 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
         <!--xml组件扫描-->
         <!-- <context:component-scan base-package="com.edu"></context:component-scan>-->
         <bean id="person" class="com.edu.entity.Person">
@@ -58,7 +61,5 @@
     </bean>
     <bean id="qq" class="com.edu.entity.Person" p:name="panhu" p:age="18" >
     </bean>
-    <bean scope="prototype">
 
-    </bean>
 </beans>
