@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+   <!-- <context:property-placeholder location="classpath:application.properties"/>-->
+
+    <!--DataSource :使用Spring的数据源替换Mybatis的配置 c3p0 dbcp druid
+    这里使用的事Spring 提供的JDBC:org.springframework.jdbc.datasource-->
+    <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1/test"/>
+        <property name="username" value="root"/>
+        <property name="password" value="a"/>
+    </bean>
+
+    <!-- sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="datasource"/>
+        <!-- 绑定Mybatis配置文件-->
+<!--        <property name="configLocation" value=""></property>-->
+        <property name="mapperLocations" value="classpath:mybatis/*.xml"></property>
+
+    </bean>
+
+
+    <!--4,配置dao接口扫描包，动态的实现了dao接口可以注入到spring容器中！-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--注入sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+
+        <!--要扫描的dao包-->
+        <property name="basePackage" value="com.edu.dao"></property>
+    </bean>
+
+    <!--配置声明式事务-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="datasource"></property>
+    </bean>
+
+    <!--结合AOP实现事务织入-->
+    <!--配置事务的类-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+
+        <!--给哪些方法配置事务-->
+        <!--配置事务的传播特性：new propagation-->
+        <tx:attributes>
+            <tx:method name="add"/>
+            <tx:method name="add"/>
+            <tx:method name="add"/>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置事务切入-->
+    <aop:config>
+        <aop:pointcut id="txPointCut" expression="execution(* com.edu.dao.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"></aop:advisor>
+    </aop:config>
+</beans>
